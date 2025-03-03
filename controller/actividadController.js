@@ -1,5 +1,5 @@
-const Actividad = require("./models/Actividad");
-const Cliente = require("./models/Cliente")
+const Actividad = require("../Models/Actividad");
+const Cliente = require("../Models/Cliente")
 const asyncHandler = require("express-async-handler");
 
 exports.VerActividad = asyncHandler(async (req,resresizeBy,next)=> {
