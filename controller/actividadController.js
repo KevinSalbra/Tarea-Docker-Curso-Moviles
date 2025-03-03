@@ -27,7 +27,7 @@ exports.CrearActividad = asyncHandler(async(req,res,next)=> {
     if(!VerificarCliente){
         return res.send("No se encontro el cliente ingresado");
     }else{
-         const nuevaActividad = await Actividad.create({ id, CodigoActividad, Nombre,ClienteID });
+         const nuevaActividad = await Actividad.create({ ActividadID, CodigoActividad, Nombre,ClienteID });
     res.status(201).json(nuevaActividad); 
     }
 
