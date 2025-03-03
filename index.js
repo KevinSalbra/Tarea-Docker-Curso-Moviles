@@ -1,5 +1,10 @@
 const express = require("express");
 const app = express();
+const sequelize = require("./config/database");
+const Cliente = require("./Models/Cliente");
+const Actividad = require("./Models/Actividad");
+
+sequelize.sync();
 
 app.use(express.json());
 
