@@ -20,6 +20,7 @@ const Cliente = sequelize.define(
   },
   {
     timestamps: false,
+    freezeTableName: true,
   }
 );
 

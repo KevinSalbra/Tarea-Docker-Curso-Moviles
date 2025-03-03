@@ -1,6 +1,6 @@
 const { Sequelize } = require("sequelize");
 
-require("dotenv").config();
+process.loadEnvFile();
 
 const sequelize = new Sequelize(
   process.env.NAME,
@@ -8,6 +8,7 @@ const sequelize = new Sequelize(
   process.env.PASSWORD,
   {
     host: process.env.HOST,
+    port: process.env.PORT,
     dialect: "mysql",
     logging: false,
   }
@@ -15,6 +16,7 @@ const sequelize = new Sequelize(
 
 async function conectarDB() {
   try {
+    console.log(sequelize);
     await sequelize.authenticate();
     console.log(" Conexión a la base de datos establecida con éxito.");
   } catch (error) {
