@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const asyncHandler = require("express-async-handler");
 
-// Ruta Home
 app.get("/", (req, res) => {
   res.send("Página principal de la API");
 });
@@ -10,13 +9,16 @@ app.get("/", (req, res) => {
 // Iniciar el servidor
 app.listen(3000, () => {});
 
-// Importar todas las funciones del clienteController
+// Importar todas las funciones de los controladores
 const ClienteController = require("./clienteController");
+const ActividadController = require("./actividadController");
 
-// Ruta para ver todos los clientes
 router.get("/clientes", asyncHandler(ClienteController.VerTodosClientes));
 
-// Ruta para agregar un nuevo cliente
 router.post("/clientes", asyncHandler(ClienteController.AgregarCliente));
+
+router.get("/:id", asyncHandler(ActividadController.obtenerActividadPorId));
+
+router.post("/actividades", asyncHandler(ActividadController.agregarActividad));
 
 module.exports = router;
