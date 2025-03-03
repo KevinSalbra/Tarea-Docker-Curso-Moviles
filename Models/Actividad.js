@@ -7,7 +7,7 @@ const Actividad = sequelize.define(
   {
     ActividadID: {
       type: DataTypes.INTEGER,
-      autoIncrement: true,
+      autoIncrement: false,
       primaryKey: true,
     },
     CodigoActividad: {
