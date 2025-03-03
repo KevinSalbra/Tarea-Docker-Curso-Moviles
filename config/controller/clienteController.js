@@ -3,7 +3,7 @@ const asyncHandler = require("express-async-handler");
 
 
 
-    exports.VerTodosClientes = asyncHandler(async(req,resizeBy,next)=>{
+    exports.VerTodosClientes = asyncHandler(async(req,res,next)=>{
 
         const clientes = await Cliente.findAll();
         if (!clientes) {
@@ -16,7 +16,7 @@ const asyncHandler = require("express-async-handler");
     });
 
 
-    exports.AgregarCliente = asyncHandler(async(req,resizeBy,next)=>{
+    exports.AgregarCliente = asyncHandler(async(req,res,next)=>{
 
         const { id, name,age } = req.body;
 
