@@ -7,13 +7,19 @@ router.get("/", (req, res) => {
   res.send("Pagina de inicio");
 });
 
-// Importar todas las funciones del clienteController
-const ClienteController = require("../controller/clienteController");
+// Iniciar el servidor
+app.listen(3000, () => {});
 
-// Ruta para ver todos los clientes
+// Importar todas las funciones de los controladores
+const ClienteController = require("./clienteController");
+const ActividadController = require("./actividadController");
+
 router.get("/clientes", asyncHandler(ClienteController.VerTodosClientes));
 
-// Ruta para agregar un nuevo cliente
 router.post("/clientes", asyncHandler(ClienteController.AgregarCliente));
+
+router.get("/:id", asyncHandler(ActividadController.obtenerActividadPorId));
+
+router.post("/actividades", asyncHandler(ActividadController.agregarActividad));
 
 module.exports = router;
