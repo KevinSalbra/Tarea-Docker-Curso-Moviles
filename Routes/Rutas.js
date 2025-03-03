@@ -2,8 +2,9 @@ const express = require("express");
 const router = express.Router();
 const asyncHandler = require("express-async-handler");
 
-app.get("/", (req, res) => {
-  res.send("Página principal de la API");
+// Ruta Home (cambia app.get por router.get)
+router.get("/", (req, res) => {
+  res.send("Pagina de inicio");
 });
 
 // Iniciar el servidor
