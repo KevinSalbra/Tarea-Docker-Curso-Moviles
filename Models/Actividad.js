@@ -10,12 +10,6 @@ const Actividad = sequelize.define(
       autoIncrement: false,
       primaryKey: true,
     },
-    CodigoActividad: {
-      type: DataTypes.CHAR(36),
-      allowNull: false,
-      unique: true,
-      defaultValue: DataTypes.UUIDV4,
-    },
     Nombre: {
       type: DataTypes.STRING(255),
       allowNull: false,

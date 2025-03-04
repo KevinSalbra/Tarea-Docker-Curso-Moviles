@@ -15,16 +15,16 @@ const asyncHandler = require("express-async-handler");
 
     exports.AgregarCliente = asyncHandler(async(req,res,next)=>{
 
-        const { name,age } = req.body;
+        const { nombre,edad } = req.body;
 
         // Validación para evitar campos vacíos
-        if ( !name || !age) {
-            console.log(name,age)
+        if ( !nombre || !edad) {
+            console.log(nombre,edad)
           return res.status(400).json({ error: "Todos lo campos deben de ser rellenados" });
         }
       
         // Inserta si los campos están completos
-        const nuevoCliente = await Cliente.create({name,age});
+        const nuevoCliente = await Cliente.create({nombre,edad});
         res.status(201).json(nuevoCliente);
  
     });

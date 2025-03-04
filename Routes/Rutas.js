@@ -15,8 +15,8 @@ router.get("/clientes", asyncHandler(ClienteController.VerTodosClientes));
 
 router.post("/clientes", asyncHandler(ClienteController.AgregarCliente));
 
-router.get("/:id", asyncHandler(ActividadController.obtenerActividadPorId));
+router.get("/actividades/:id", asyncHandler(ActividadController.VerActividad));
 
-router.post("/actividades", asyncHandler(ActividadController.agregarActividad));
+router.post("/actividades", asyncHandler(ActividadController.CrearActividad));
 
 module.exports = router;

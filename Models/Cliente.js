@@ -9,11 +9,11 @@ const Cliente = sequelize.define(
       autoIncrement: true,
       primaryKey: true,
     },
-    name: {
+    nombre: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    age: {
+    edad: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
