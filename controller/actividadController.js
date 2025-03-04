@@ -9,7 +9,7 @@ exports.VerActividad = asyncHandler(async (req, res, next) => {
       attributes: ['nombre', 'correoElectronico', 'telefono']
     }
   });
-
+  
   if (!actividad) {
     return res.send("No se encontró la actividad");
   }
