@@ -1,6 +1,8 @@
 const asyncHandler = require("express-async-handler");
 const Actividad = require("../Models/Actividad"); 
 const Cliente = require("../Models/Cliente"); 
+const { validationResult } = require("express-validator");
+
 
 exports.VerActividad = asyncHandler(async (req, res, next) => {
   const actividad = await Actividad.findByPk(req.params.id, {
@@ -17,13 +19,12 @@ exports.VerActividad = asyncHandler(async (req, res, next) => {
 });
 
 exports.CrearActividad = asyncHandler(async (req, res, next) => {
-  const { nombre, clienteID, fecha } = req.body;
-
-  if (!nombre || !clienteID || !fecha) {
-    return res
-      .status(400)
-      .json({ error: "Todos los campos deben de ser rellenados" });
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
   }
+
+  const { nombre, clienteID, fecha } = req.body;
 
   const verificarCliente = await Cliente.findByPk(clienteID);
   if (!verificarCliente) {
