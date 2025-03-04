@@ -1,6 +1,6 @@
-const Actividad = require("../Models/Actividad");
-const Cliente = require("../Models/Cliente");
 const asyncHandler = require("express-async-handler");
+const Actividad = require("../Models/Actividad"); 
+const Cliente = require("../Models/Cliente"); 
 
 const generarIDActividad = async () => {
   let nuevoID;
@@ -15,7 +15,12 @@ const generarIDActividad = async () => {
 };
 
 exports.VerActividad = asyncHandler(async (req, res, next) => {
-  const actividad = await Actividad.findByPk(req.params.id);
+  const actividad = await Actividad.findByPk(req.params.id, {
+    include: {
+      model: Cliente,
+      attributes: ['nombre', 'correoElectronico', 'telefono']
+    }
+  });
 
   if (!actividad) {
     return res.send("No se encontró la actividad");
@@ -29,7 +34,9 @@ exports.CrearActividad = asyncHandler(async (req, res, next) => {
   if (!nombre || !clienteID || !fecha) {
     return res
       .status(400)
+
       .json({ error: "Todos los campos deben ser rellenados" });
+
   }
 
   const verificarCliente = await Cliente.findByPk(clienteID);

@@ -16,12 +16,6 @@ const Actividad = sequelize.define(
     clienteID: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      references: {
-        model: Cliente,
-        key: "id",
-      },
-      onUpdate: "CASCADE",
-      onDelete: "CASCADE",
     },
     fecha: {
       type: DataTypes.DATE,
@@ -33,5 +27,7 @@ const Actividad = sequelize.define(
     freezeTableName: true,
   }
 );
+
+
 
 module.exports = Actividad;

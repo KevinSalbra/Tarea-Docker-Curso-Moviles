@@ -1,12 +1,13 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/database");
+const Actividad = require("./Actividad"); 
 
 const Cliente = sequelize.define(
   "Cliente",
   {
     id: {
       type: DataTypes.INTEGER,
-      autoIncrement: false,
+      autoIncrement: true,
       primaryKey: true,
     },
     nombre: {
@@ -35,4 +36,7 @@ const Cliente = sequelize.define(
   }
 );
 
-module.exports = Cliente;
+Cliente.hasMany(Actividad, { foreignKey: 'clienteID', sourceKey:"id" });
+Actividad.belongsTo(Cliente, { foreignKey: 'clienteID',sourceKey:"id" });
+
+module.exports = Cliente; 
