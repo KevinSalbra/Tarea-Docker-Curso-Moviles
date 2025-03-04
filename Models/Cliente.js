@@ -6,7 +6,7 @@ const Cliente = sequelize.define(
   {
     id: {
       type: DataTypes.INTEGER,
-      autoIncrement: true,
+      autoIncrement: false,
       primaryKey: true,
     },
     nombre: {

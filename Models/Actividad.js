@@ -5,16 +5,16 @@ const Cliente = require("./Cliente");
 const Actividad = sequelize.define(
   "Actividad",
   {
-    ActividadID: {
-      type: DataTypes.INTEGER,
-      autoIncrement: false,
+    actividadID: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
     },
-    Nombre: {
+    nombre: {
       type: DataTypes.STRING(255),
       allowNull: false,
     },
-    ClienteID: {
+    clienteID: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
@@ -23,6 +23,10 @@ const Actividad = sequelize.define(
       },
       onUpdate: "CASCADE",
       onDelete: "CASCADE",
+    },
+    fecha: {
+      type: DataTypes.DATE,
+      allowNull: false,
     },
   },
   {

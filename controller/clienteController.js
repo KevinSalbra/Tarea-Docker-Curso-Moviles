@@ -1,34 +1,34 @@
 const Cliente = require("../Models/Cliente");
 const asyncHandler = require("express-async-handler");
 
-    exports.VerTodosClientes = asyncHandler(async(req,res,next)=>{
+exports.VerTodosClientes = asyncHandler(async (req, res, next) => {
+  const clientes = await Cliente.findAll();
+  if (!clientes) {
+    return res.status(404).send("Actualmente no se cuenta con clientes");
+  }
 
-        const clientes = await Cliente.findAll();
-        if (!clientes) {
-            return res.status(404).send("Actualmente no se cuenta con clientes");
-        }
-       
-            return res.status(200).json(clientes)
-        
-    });
+  return res.status(200).json(clientes);
+});
 
+exports.AgregarCliente = asyncHandler(async (req, res, next) => {
+  const { id, nombre, edad } = req.body;
 
-    exports.AgregarCliente = asyncHandler(async(req,res,next)=>{
+  if (!id || !nombre || !edad) {
+    console.log(nombre, edad);
+    return res
+      .status(400)
+      .json({ error: "Todos lo campos deben de ser rellenados" });
+  }
 
-        const { nombre,edad } = req.body;
+  const verificarID = await Cliente.findByPk(id);
+  {
+    if (verificarID) {
+      return res
+        .status(404)
+        .json({ error: "El cliente ya existe en la base de datos" });
+    }
+  }
 
-        // Validación para evitar campos vacíos
-        if ( !nombre || !edad) {
-            console.log(nombre,edad)
-          return res.status(400).json({ error: "Todos lo campos deben de ser rellenados" });
-        }
-      
-        // Inserta si los campos están completos
-        const nuevoCliente = await Cliente.create({nombre,edad});
-        res.status(201).json(nuevoCliente);
- 
-    });
-
-
-
-
+  const nuevoCliente = await Cliente.create({ id, nombre, edad });
+  res.status(201).json(nuevoCliente);
+});
