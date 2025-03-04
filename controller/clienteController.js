@@ -11,10 +11,10 @@ exports.VerTodosClientes = asyncHandler(async (req, res, next) => {
 });
 
 exports.AgregarCliente = asyncHandler(async (req, res, next) => {
-  const { id, nombre, edad } = req.body;
+  const { id, nombre, correoElectronico, telefono } = req.body;
 
-  if (!id || !nombre || !edad) {
-    console.log(nombre, edad);
+  if (!id || !nombre || !correoElectronico || !telefono) {
+    console.log(nombre, correoElectronico, telefono);
     return res
       .status(400)
       .json({ error: "Todos lo campos deben de ser rellenados" });
@@ -29,6 +29,11 @@ exports.AgregarCliente = asyncHandler(async (req, res, next) => {
     }
   }
 
-  const nuevoCliente = await Cliente.create({ id, nombre, edad });
+  const nuevoCliente = await Cliente.create({
+    id,
+    nombre,
+    correoElectronico,
+    telefono,
+  });
   res.status(201).json(nuevoCliente);
 });
