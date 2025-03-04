@@ -13,9 +13,20 @@ const Cliente = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    edad: {
-      type: DataTypes.INTEGER,
+    correoElectronico: {
+      type: DataTypes.STRING,
       allowNull: false,
+      unique: true,
+      validate: {
+        isEmail: true,
+      },
+    },
+    telefono: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        isNumeric: true,
+      },
     },
   },
   {
