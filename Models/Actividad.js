@@ -6,7 +6,8 @@ const Actividad = sequelize.define(
   "Actividad",
   {
     actividadID: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
     },
     nombre: {
@@ -31,3 +32,4 @@ const Actividad = sequelize.define(
 
 
 module.exports = Actividad;
+
