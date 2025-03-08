@@ -1,19 +1,18 @@
 const asyncHandler = require("express-async-handler");
-const Actividad = require("../Models/Actividad"); 
-const Cliente = require("../Models/Cliente"); 
+const Actividad = require("../Models/Actividad");
+const Cliente = require("../Models/Cliente");
 const { validationResult } = require("express-validator");
-
 
 exports.VerActividad = asyncHandler(async (req, res, next) => {
   const actividad = await Actividad.findByPk(req.params.id, {
     include: {
       model: Cliente,
-      attributes: ['nombre', 'correoElectronico', 'telefono']
-    }
+      attributes: ["nombre", "correoElectronico", "telefono"],
+    },
   });
-  
+
   if (!actividad) {
-    return res.send("No se encontró la actividad");
+    return res.send("No se encontro la actividad");
   }
   res.json(actividad);
 });

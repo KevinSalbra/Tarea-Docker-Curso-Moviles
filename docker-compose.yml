@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  database:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: password104
+      MYSQL_DATABASE: my-database
+      MYSQL_USER: sa
+      MYSQL_PASSWORD: password104
+    ports:
+      - 3307:3306
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:
