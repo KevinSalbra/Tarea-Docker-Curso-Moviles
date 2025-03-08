@@ -1,6 +1,4 @@
 const sequelize = require("./config/database");
-const Cliente = require("./Models/Cliente");
-const Actividad = require("./Models/Actividad");
 
 async function syncDB() {
   try {
